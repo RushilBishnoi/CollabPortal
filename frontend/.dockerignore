@@ -1,0 +1,14 @@
+node_modules
+dist
+.env
+.env.local
+*.local
+*.log
+test/
+*.spec.*
+.eslintrc*
+eslint.config*
+vitest.config*
+tsconfig*.json
+postcss.config.js
+tailwind.config.js
