@@ -1,19 +1,25 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe, Logger } from '@nestjs/common';
+import { ValidationPipe, Logger, INestApplication } from '@nestjs/common';
+import { ExpressAdapter } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import compression from 'compression';
-import express from 'express';
+import express, { Express } from 'express';
 import { validateProductionEnv } from './config/env.validation';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
-async function bootstrap() {
+export async function createNestApp(
+  expressInstance?: Express,
+): Promise<{ app: INestApplication; expressApp: Express }> {
   // Fail-fast environment validation for production
   validateProductionEnv();
 
-  const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const expressApp = expressInstance || express();
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(expressApp),
+  );
 
   // Configure reverse proxy trust when enabled in deployment topology
   if (process.env.NODE_ENV === 'production' && process.env.TRUST_PROXY === 'true') {
@@ -94,6 +100,12 @@ async function bootstrap() {
   // Enable graceful shutdown hooks for SIGINT/SIGTERM connection draining
   app.enableShutdownHooks();
 
+  return { app, expressApp };
+}
+
+async function bootstrap() {
+  const logger = new Logger('Bootstrap');
+  const { app } = await createNestApp();
   const port = process.env.PORT || 4000;
   await app.listen(port);
   logger.log(`Backend server successfully listening on port ${port}`);
@@ -101,4 +113,7 @@ async function bootstrap() {
   logger.log(`Health endpoint at http://localhost:${port}/api/v1/health`);
 }
 
-bootstrap();
+// Run standalone server when main.ts is executed directly (e.g. node dist/main.js)
+if (require.main === module) {
+  bootstrap();
+}
