@@ -22,10 +22,15 @@ export class PlacementDocumentsService {
   private readonly storageDir: string;
 
   constructor(private readonly prisma: PrismaService) {
-    const storageBase = process.env.STORAGE_DIR || path.resolve(process.cwd(), 'storage');
+    const storageBase =
+      process.env.STORAGE_DIR ||
+      (process.env.VERCEL ? path.join('/tmp', 'storage') : path.resolve(process.cwd(), 'storage'));
     this.storageDir = path.join(storageBase, 'placements');
+  }
+
+  private async ensureStorageDir(): Promise<void> {
     if (!fs.existsSync(this.storageDir)) {
-      fs.mkdirSync(this.storageDir, { recursive: true });
+      await fs.promises.mkdir(this.storageDir, { recursive: true });
     }
   }
 
@@ -103,6 +108,7 @@ export class PlacementDocumentsService {
     const sanitizedOriginalFilename = sanitizeFilename(file.originalFilename, 'offer-letter.pdf');
 
     // 5. Write File
+    await this.ensureStorageDir();
     await fs.promises.writeFile(filePath, rawBuffer);
 
     // 6. Create Document Record

@@ -22,10 +22,15 @@ export class ApplicationDocumentsService {
   private readonly storageDir: string;
 
   constructor(private readonly prisma: PrismaService) {
-    const storageBase = process.env.STORAGE_DIR || path.resolve(process.cwd(), 'storage');
+    const storageBase =
+      process.env.STORAGE_DIR ||
+      (process.env.VERCEL ? path.join('/tmp', 'storage') : path.resolve(process.cwd(), 'storage'));
     this.storageDir = path.join(storageBase, 'applications');
+  }
+
+  private async ensureStorageDir(): Promise<void> {
     if (!fs.existsSync(this.storageDir)) {
-      fs.mkdirSync(this.storageDir, { recursive: true });
+      await fs.promises.mkdir(this.storageDir, { recursive: true });
     }
   }
 
@@ -82,6 +87,7 @@ export class ApplicationDocumentsService {
     const sanitizedOriginalFilename = sanitizeFilename(file.originalFilename, 'resume.pdf');
 
     // 5. Write File to Secure Disk Storage
+    await this.ensureStorageDir();
     await fs.promises.writeFile(filePath, rawBuffer);
 
     // 6. Create Document Record in DB
