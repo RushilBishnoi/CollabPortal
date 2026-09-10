@@ -113,7 +113,4 @@ async function bootstrap() {
   logger.log(`Health endpoint at http://localhost:${port}/api/v1/health`);
 }
 
-// Run standalone server when main.ts is executed directly (e.g. node dist/main.js)
-if (require.main === module) {
-  bootstrap();
-}
+bootstrap();
