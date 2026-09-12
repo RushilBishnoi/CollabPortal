@@ -115,3 +115,276 @@ npm run build
 ## License
 
 UNLICENSED — All rights reserved.
+# SIH 2026 Project Repository
+
+This repository contains the implementation of an **Academia–Industry Collaboration Platform for Skill Mapping, Internships and Placement** developed as a solution for SIH 2026.
+
+The platform connects **students, faculty, industries/recruiters, and institutions** through a unified web-based system for skill assessment, career mapping, industry collaboration, internships, recruitment, and placement.
+
+## 1. Project Information
+
+- **Project Title:** Academia–Industry Collaboration Platform for Skill Mapping, Internships and Placement
+- **PS ID:** SIH2026-PS-44
+- **PS Title:** Portal for Academia–Industry Collaboration for Skill Mapping, Internships and Placement
+- **Category:** Software
+- **Theme:** Education / Skill Development / Employment
+
+## 2. Problem Statement
+
+Students may have difficulty understanding their current skill levels, identifying skill gaps, finding suitable career opportunities, and connecting with relevant industries.
+
+At the same time, industries may face challenges in finding candidates with the required skills, while institutions and faculty need better mechanisms to coordinate internships, placements, industry collaborations, training, mentorship, and academic-industry activities.
+
+A unified platform is required to connect these stakeholders and provide a structured workflow for **skill mapping, skill-gap identification, opportunity discovery, industry collaboration, recruitment, and placement tracking**.
+
+## 3. Proposed Solution
+
+Our platform provides a centralized web-based ecosystem connecting **students, faculty, industries/recruiters, and institutions/administrators**.
+
+Students can create skill profiles, complete assessments, identify skill gaps, explore career roles, discover internships and jobs, apply for opportunities, track applications, and maintain verified digital portfolios.
+
+Industries can define required skills, publish opportunities, discover eligible candidates, manage applications, and conduct recruitment activities.
+
+Faculty can participate in industry internships, FDPs, research, consultancy, mentorship, workshops, guest lectures, and live projects.
+
+Institutions can monitor student skills, internships, placements, industry engagement, and overall outcomes through dashboards and analytics.
+
+The platform uses **deterministic, rule-based and explainable matching algorithms** rather than depending on machine learning as a core requirement.
+
+## 4. Key Features
+
+- User registration and secure authentication
+- Role-based access control
+- Student skill profiling
+- Faculty profiles
+- Industry and recruiter profiles
+- Institution and administrator dashboards
+- Skill assessment
+- Skill-gap analysis
+- Career-role mapping
+- Industry skill requirement management
+- Internship discovery
+- Job and placement opportunities
+- Apprenticeship and training opportunities
+- Deterministic opportunity matching
+- Explainable candidate ranking
+- Application management
+- Recruitment pipeline tracking
+- Interview and selection workflow
+- Digital student portfolios
+- Certification and document management
+- Portfolio and credential verification
+- Faculty internships and FDP opportunities
+- Research and consultancy collaboration
+- Mentorship programs
+- Workshops and guest lectures
+- Industry live projects
+- Notifications
+- Institutional analytics and reporting
+- Industry skill-demand analytics
+- Placement and internship tracking
+- Secure document storage
+
+## 5. Technology Stack
+
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS, shadcn/ui
+- **Frontend State / Data:** TanStack Query
+- **Forms & Validation:** React Hook Form, Zod
+- **Routing:** React Router
+- **Charts & Analytics:** Recharts
+- **Backend:** Node.js, TypeScript, NestJS
+- **API:** REST API
+- **Authentication:** JWT with access and refresh tokens
+- **Authorization:** Role-Based Access Control (RBAC)
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **File Storage:** Object Storage
+- **Deployment:** Docker / Cloud
+
+## 6. Architecture
+
+See [docs/architecture.md](docs/architecture.md).
+
+```text
+Students
+   |
+Faculty
+   |
+Industry / Recruiters
+   |
+Institutions / Admin
+   |
+   v
+Frontend Web Application
+   |
+   v
+Backend API
+   |
+   +--------------------> PostgreSQL Database
+   |
+   +--------------------> File / Object Storage
+   |
+   +--------------------> Skill Assessment
+   |
+   +--------------------> Skill Gap Engine
+   |
+   +--------------------> Matching Engine
+   |
+   +--------------------> Opportunity Management
+   |
+   +--------------------> Application & Recruitment
+   |
+   +--------------------> Collaboration Management
+   |
+   +--------------------> Analytics & Reporting
+   |
+   v
+Ranked Opportunities / Applications /
+Collaboration / Placement Outcomes
+   |
+   v
+Frontend Dashboards
+
+CORE PLATFORM WORKFLOW:
+Student
+   |
+   v
+Skill Assessment
+   |
+   v
+Skill Profile
+   |
+   v
+Skill Gap Analysis
+   |
+   v
+Career Role Mapping
+   |
+   v
+Industry Skill Requirements
+   |
+   v
+Deterministic Matching Engine
+   |
+   v
+Ranked Opportunities
+   |
+   v
+Application
+   |
+   v
+Recruitment Process
+   |
+   v
+Internship / Placement
+   |
+   v
+Portfolio & Outcome Update
+
+6.REPOSITORY STRUCTURE:
+
+YOUR-SIH-PROJECT/
+├── README.md
+├── SUBMISSION_GUIDE.md
+├── submission/
+│   ├── PRESENTATION.md
+│   └── DEMO.md
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── ...
+├── backend/
+│   ├── src/
+│   ├── prisma/
+│   └── ...
+├── docs/
+│   ├── architecture.md
+│   ├── database-schema.md
+│   ├── api-specification.md
+│   ├── security-requirements.md
+│   ├── ui-ux-guidelines.md
+│   └── development-principles.md
+├── assets/
+│   └── screenshots/
+│       └── README.md
+├── .antigravity/
+│   ├── rules.md
+│   ├── workflows/
+│   └── docs/
+├── .gitignore
+├── LICENSE
+└── package.json
+
+7.WHAT GOES WHERE?
+
+| Item                                   | Location              |
+| -------------------------------------- | --------------------- |
+| Frontend source code                   | `frontend/`           |
+| Backend source code                    | `backend/`            |
+| Database schema / migrations           | `backend/prisma/`     |
+| Architecture / technical documentation | `docs/`               |
+| AI coding-agent rules and workflows    | `.antigravity/`       |
+| Project screenshots                    | `assets/screenshots/` |
+| Final PPT / presentation               | `submission/`         |
+| Demo video link                        | `submission/DEMO.md`  |
+| Project overview                       | `README.md`           |
+
+8. Final Presentation
+
+https://drive.google.com/file/d/1-rcDOcgFAC0FgyvkB1Wro1MCskSIcCLf/view?usp=drivesdk
+
+10. Screenshots / Prototype Photos
+
+See assets/screenshots/README.md for examples and naming conventions.
+
+11. Installation
+
+git clone <https://github.com/RushilBishnoi/CollabPortal.git>
+cd <GIT SIH>
+
+Install frontend dependencies:
+
+cd frontend
+npm install
+
+Install backend dependencies:
+
+cd ../backend
+npm install
+
+Initialize the database according to the Prisma configuration:
+
+npx prisma generate
+npx prisma migrate dev
+
+12. Run
+
+Start the backend:
+
+cd backend
+npm run start:dev
+
+Start the frontend in another terminal:
+
+cd frontend
+npm run dev
+
+13. Future Scope
+
+The platform can be extended with additional features such as:
+
+Advanced industry–academia collaboration workflows
+Integration with external job and internship portals
+University ERP integration
+External certification verification
+Automated placement reports
+Advanced career-path planning
+Mobile application support
+Multi-institution deployment
+Additional analytics and benchmarking
+Calendar and interview scheduling integrations
+Advanced notification channels
+AI-assisted career guidance as an optional future enhancement
+AI-assisted resume and portfolio analysis as an optional future enhancement
+
+The core platform is designed so that future AI/ML capabilities can be introduced without making them a dependency for the primary workflows.

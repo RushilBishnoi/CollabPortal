@@ -1,0 +1,15 @@
+node_modules
+dist
+storage
+.env
+.env.local
+*.local
+*.log
+*.md
+!README.md
+test/
+.eslintrc*
+eslint.config*
+vitest.config*
+tsconfig*.json
+!tsconfig.build.json
